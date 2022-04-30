@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>主页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="css/main.css"/>
+
+</head>
+  <body div class="main">
+	主页面
+  <div class="logout">
+	<a href="LogoutServlet">安全退出</a></div>
+
+  
+    <p div class="choiceRace">
+    请选择种族
+      <select id="race">
+        <option value="种族">种族</option>
+      </select>
+    </p>
+    </div>
+
+    <p div class="choiceStar">
+    请选择星级
+      <select id="star">
+        <option value="星级">星级</option>
+      </select>
+    </p>
+    </div>
+  
+  
+
+  <div class="formcss">
+    <div class="function">
+      <input type="button" value="查询" id="btQuery" />
+      <input type="button" value="增加" id="btAdd" />
+      <input type="button" value="批量删除" id="btDelete" />
+      <input type="button" value="修改卡片名字" id="btUpdate" />
+      <input type="button" value="清空" id="btClear" />
+    </div>
+    <p id="msg"></p>
+    <div class="blank">
+      <table style="border:'1'" cellpadding=0>
+        <thead>
+          <td>选择</td>
+          <td>星级</td>
+          <td>种族序号</td>
+          <td>种族名称</td>
+          <td>名称</td> 
+           <td>操作</td>
+        </thead>
+
+        <tbody id="tbData">
+
+        </tbody>
+      </table>
+    </div>
+  
+
+
+    <div class="showPage">
+      <div class="page">
+        每页<select id="page" name="page">
+            <option calue="3">3</option>
+            <option calue="5">5</option>
+            <option calue="10">10</option>
+        </select> 共
+        <span id="total">多少</span>条数据
+        <span id="currentpage" name="currentpage">1</span>页/
+        <span id="totalpage">***</span>页
+      </div>
+
+      <div class="change">
+        <a id="first" href="javascript:first()">首页</a>
+        <a id="prev" href="javascript:prev()">上一页</a>
+        <a id="next" href="javascript:next()">下一页</a>
+        <a id="last" href="javascript:end()">尾页</a>
+      </div>
+    </div >
+  </div>
+  <div class="bottom"></div>
+  
+  </div>
+  </body>
+
+  <script>
+    $(document).ready(function () {
+      $.ajax({
+        type: "post",
+        url: "queryRace",
+        data: {},
+        dataType: "json",
+        success: function (data) {
+          var obj=document.getElementById("race");
+          obj.options.length=0;
+          for(var i=0;i<data.length;i++)
+          obj.add(new Option(data[i].raceName,data[i].raceId));
+        }
+      });
+
+      $("#race").change(
+            function() {
+                $.ajax({
+                    type: "post",
+                    url: "queryStar",
+                    data: {
+                        raceId: $("#race").val()
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        var obj = document.getElementById("star");
+                        obj.options.length = 0;
+                        var lastStrNum=0;
+                        for (var i = 0; i < response.length; i++) {
+                          if(lastStrNum==response[i].starNumber){
+                            continue;
+                          }
+                            obj.add(new Option(response[i].starNumber,response[i].starNumber));
+                            lastStrNum=response[i].starNumber;
+                        }
+                    }
+                });
+            }
+        );
+
+    });
+
+  </script>
+
+</html>
+

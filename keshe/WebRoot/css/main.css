@@ -1,0 +1,71 @@
+.main{
+    background-image: url("../img/2.jpg");
+    background-color: aliceblue;
+    position: absolute;
+    box-sizing: border-box;
+}
+
+.logout{
+    background-color: rgba(231, 224, 224, 0.521);
+    margin-right: 600px;
+}
+
+.formcss{
+    /* background-image: url("../img/2.jpg")no-repeat; */
+    background-color: rgba(231, 224, 224, 0.521);
+    border:1px solid rgb(255, 251, 0); 
+    margin-left: 70%;
+    width:600px; 
+    height:530px;
+}
+
+.choiceRace{
+    background-color: rgba(231, 224, 224, 0.521);
+    margin-left: 500px;
+}
+
+.choiceStar{
+    background-color: rgba(231, 224, 224, 0.521);
+    margin-left: 500px;
+}
+
+.function{
+    padding-left: 150px;
+}
+
+.blank{
+    margin-left: 170px;
+}
+
+/* .showPage{
+    margin-bottom: 15%;
+} */
+
+.page{
+    margin-left: 150px;
+    margin-bottom: 380px;
+}
+
+.change{
+    margin-bottom: 80px;
+    margin-left: 400px;
+}
+
+.bottom{
+    margin-left :500px;
+    margin-top: 80px;
+}
+
+.loginC{
+    background-color: rgba(231, 224, 224, 0.521);
+    margin-right: 400px;
+    margin-bottom: 70%;
+    width: 200px;
+    text-align: center;
+    float:right;
+    position: relative;
+}
+#login{
+    position: fixed;
+}
+
